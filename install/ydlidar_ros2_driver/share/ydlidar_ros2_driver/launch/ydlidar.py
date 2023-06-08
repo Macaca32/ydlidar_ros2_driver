@@ -1,0 +1,1 @@
+/home/vm/ydlidar_ros2_driver/launch/ydlidar.py
