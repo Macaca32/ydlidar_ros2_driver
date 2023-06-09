@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
   RCLCPP_INFO(node->get_logger(), "[YDLIDAR INFO] Current ROS Driver Version: %s\n", ((std::string)ROS2Verision).c_str());
 
   CYdLidar laser;
-  std::string str_optvalue = "/dev/ydlidar";
+  std::string str_optvalue = "/dev/serial/by-path/pci-0000:00:06.0-usb-0:2:1.0-port0";
   node->declare_parameter("port", str_optvalue);
   ///lidar port
   laser.setlidaropt(LidarPropSerialPort, str_optvalue.c_str(), str_optvalue.size());
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 
   //////////////////////int property/////////////////
   /// lidar baudrate
-  int optval = 230400;
+  int optval = 115200;
   node->declare_parameter("baudrate", optval);
   laser.setlidaropt(LidarPropSerialBaudrate, &optval, sizeof(int));
   /// tof lidar
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
   node->declare_parameter("device_type", optval);
   laser.setlidaropt(LidarPropDeviceType, &optval, sizeof(int));
   /// sample rate
-  optval = 9;
+  optval = 8;
   node->declare_parameter("sample_rate", optval);
   laser.setlidaropt(LidarPropSampleRate, &optval, sizeof(int));
   /// abnormal count
@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
   node->declare_parameter("auto_reconnect", b_optvalue);
   laser.setlidaropt(LidarPropAutoReconnect, &b_optvalue, sizeof(bool));
   /// one-way communication
-  b_optvalue = false;
+  b_optvalue = true;
   node->declare_parameter("isSingleChannel", b_optvalue);
   laser.setlidaropt(LidarPropSingleChannel, &b_optvalue, sizeof(bool));
   /// intensity
@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
   node->declare_parameter("angle_min", f_optvalue);
   laser.setlidaropt(LidarPropMinAngle, &f_optvalue, sizeof(float));
   /// unit: m
-  f_optvalue = 64.f;
+  f_optvalue = 12.f;
   node->declare_parameter("range_max", f_optvalue);
   laser.setlidaropt(LidarPropMaxRange, &f_optvalue, sizeof(float));
   f_optvalue = 0.1f;
