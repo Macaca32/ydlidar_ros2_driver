@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
   node->declare_parameter("device_type", optval);
   laser.setlidaropt(LidarPropDeviceType, &optval, sizeof(int));
   /// sample rate
-  optval = 8;
+  optval = 4;
   node->declare_parameter("sample_rate", optval);
   laser.setlidaropt(LidarPropSampleRate, &optval, sizeof(int));
   /// abnormal count
@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
   node->declare_parameter("angle_min", f_optvalue);
   laser.setlidaropt(LidarPropMinAngle, &f_optvalue, sizeof(float));
   /// unit: m
-  f_optvalue = 12.f;
+  f_optvalue = 16.f;
   node->declare_parameter("range_max", f_optvalue);
   laser.setlidaropt(LidarPropMaxRange, &f_optvalue, sizeof(float));
   f_optvalue = 0.1f;
